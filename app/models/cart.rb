@@ -1,5 +1,5 @@
 class Cart < ApplicationRecord
   belongs_to :user
-  has_many :cart_bowties
-  has_many :bowties, through: :cart_bowties
+  has_many :cart_items
+  has_many :items, through: :cart_items
 end

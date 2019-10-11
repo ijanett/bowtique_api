@@ -1,2 +1,0 @@
-class CartBowtiesController < ApplicationController
-end

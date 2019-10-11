@@ -1,2 +1,0 @@
-class BowtiesController < ApplicationController
-end
