@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :cart_bowties
   resources :carts
   resources :bowties
   resources :users

@@ -1,0 +1,2 @@
+class CartBowtiesController < ApplicationController
+end
