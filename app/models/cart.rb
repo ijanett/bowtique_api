@@ -16,6 +16,6 @@ class Cart < ApplicationRecord
   end
 
   def order_date
-    self.updated_at.strftime('%b %d, %Y')
+    self.updated_at.in_time_zone('Eastern Time (US & Canada)').strftime('%b %d, %Y')
   end
 end
