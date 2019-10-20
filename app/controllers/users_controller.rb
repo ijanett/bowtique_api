@@ -7,13 +7,17 @@ class UsersController < ApplicationController
     def show
         user = User.find_by(id: params[:id])
         options = {
-            include: [:carts]
+            include: [:carts, :cart_items]
         }
         render json: UserSerializer.new(user, options)
     end
 
     def create
         user = User.find_or_create_by(user_params)
+        if user.open_cart == false
+            cart = Cart.create(user_id: user.id)
+        end
+        
         render json: UserSerializer.new(user)
     end
 
