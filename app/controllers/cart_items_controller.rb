@@ -7,9 +7,13 @@ class CartItemsController < ApplicationController
     def create
         cart = Cart.find_by(id: params[:cart_id])
         user = cart.user
-        cart_item = CartItem.new(cart_id: cart.id, item_id: params[:item_id])
-        
-        render json: Cart.new(cart)
+        cart_item = CartItem.create(cart_id: cart.id, item_id: params[:item_id])
+
+        options = {
+            include: [:carts]
+        }
+
+        render json: UserSerializer.new(user, options)
     end
 
     def destroy
