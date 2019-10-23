@@ -9,14 +9,18 @@ class CartsController < ApplicationController
         render json: CartSerializer.new(cart)
     end
 
-    def create
-        cart = Cart.new(cart_params)
-        render json: CartSerializer.new(cart)
-    end
+    def update
+        cart = Cart.find_by(id: params[:id])
+        user = cart.user
+        cart.checkout = true
+        cart.save
 
-    private
+        new_cart = Cart.create(user_id: user.id)
 
-    def cart_params
-        params.require(:cart).permit(:user_id, :checkout)
+        options = {
+            include: [:carts]
+        }
+
+        render json: UserSerializer.new(user, options)
     end
 end
