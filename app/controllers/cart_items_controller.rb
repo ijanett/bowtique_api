@@ -1,7 +1,8 @@
 class CartItemsController < ApplicationController
     def index
         cart_items = CartItem.all
-        render json: cart_items
+
+        render json: CartItemSerializer.new(cart_items)
     end
 
     def create
@@ -10,17 +11,22 @@ class CartItemsController < ApplicationController
         cart_item = CartItem.create(cart_id: cart.id, item_id: params[:item_id])
 
         options = {
-            include: [:carts]
+            include: [:carts, :cart_items]
         }
 
         render json: UserSerializer.new(user, options)
     end
 
     def destroy
-        cart = Cart.find_by(id: params[:cart_id])
         cart_item = CartItem.find_by(id: params[:id])
+        cart = Cart.find_by(id: params[:cart_id])
+        user = cart.user
         cart_item.destroy
 
-        render json: Cart.new(cart)
+        options = {
+            include: [:carts, :cart_items]
+        }
+
+        render json: UserSerializer.new(user, options)
     end
 end
