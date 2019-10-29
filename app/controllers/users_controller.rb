@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     def show
         user = User.find_by(id: params[:id])
         options = {
-            include: [:carts, :cart_items]
+            include: [:carts]
         }
         render json: UserSerializer.new(user, options)
     end

@@ -11,7 +11,7 @@ class CartItemsController < ApplicationController
         cart_item = CartItem.create(cart_id: cart.id, item_id: params[:item_id])
 
         options = {
-            include: [:carts, :cart_items]
+            include: [:carts]
         }
 
         render json: UserSerializer.new(user, options)
@@ -24,7 +24,7 @@ class CartItemsController < ApplicationController
         cart_item.destroy
 
         options = {
-            include: [:carts, :cart_items]
+            include: [:carts]
         }
 
         render json: UserSerializer.new(user, options)
