@@ -20,16 +20,3 @@ items = Item.create([
     {name: "Oriental Plum", size: 1, price: 14.00, image: "https://drive.google.com/uc?export=view&id=13_qRq70uH8BkZbMeRP9m5z8J_xFb5g94"},
     {name: "Black Paisley", size: 0, price: 12.00, image: "https://drive.google.com/uc?export=view&id=1DeyRDX6cTPrFHlpmXHg0ftSFw391OzWX"}
 ])
-
-users = User.create([
-    {username: "ijanett", password: "mypass"}
-])
-
-carts = Cart.create([
-    {user_id: 1, checkout: true}
-])
-
-cart_items = CartItem.create([
-    {cart_id: 1, item_id: 1},
-    {cart_id: 1, item_id: 2}
-])
